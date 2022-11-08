@@ -13,7 +13,7 @@ const codeToCountry = (code) => {
 const getVisitorLocation = async (lat, lon) => {
 const weatherStats = []    
 
-    const url = `http://www.geoplugin.net/extras/location.gp?lat=${lat}&lon=${lon}&format=json`
+    const url = `https://www.geoplugin.net/extras/location.gp?lat=${lat}&lon=${lon}&format=json`
     const fetchres = await fetch(url)
     const data = await fetchres.json()
     let country = codeToCountry(data.geoplugin_countryCode)
