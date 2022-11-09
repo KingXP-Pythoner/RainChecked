@@ -1,5 +1,4 @@
 import { useState, useEffect, useCallback, createContext } from 'react'
-import './App.css'
 import NavMenu from './components/NavMenu'
 import SearchDeploy from './components/SearchDeploy'
 import UIRenderer from './components/UIRenderer'
