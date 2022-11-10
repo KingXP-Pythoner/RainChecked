@@ -69,12 +69,13 @@ setweatherData((prev)=>({...prev, ...data[1], city: data[0]}))
      
              }
              const onError = (error) => {
+                 setPermDenied(true)
                  console.log(error)
              }
              const options = {
                  enableHighAccuracy: true,
                  maximumAge: 10000,
-                 timeout: 5000,
+                 timeout: 10000,
              }
              navigator.geolocation.getCurrentPosition((position)=>onSuccess(position), onError, options)
 
