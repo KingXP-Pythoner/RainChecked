@@ -4,6 +4,7 @@ import { weatherContext } from "../../App";
 import { imageBank } from "../APIS/ImageBank";
 import ReactSpeedometer from "react-d3-speedometer"
 import Transition from "react-d3-speedometer"
+import random from "random";
 import { nanoid } from "nanoid";
 export default function Weather() {
     //destructure and consume weather data from context
@@ -16,7 +17,7 @@ export default function Weather() {
     // ----------ALL HOOKS AND FUNCTIONS--------------------------------------------------------------------------------------
     function showWeeklyList() {
         if (forecastDates){
-        const mapWeekPred = forecastDates.map((item, index) => {
+        const mapWeekPred = forecastDates.map((item) => {
 
             function convertDatetoDayName(date) {
                 const dayName = new Date(date).toLocaleString("en-us", { weekday: "long" })
@@ -43,12 +44,6 @@ export default function Weather() {
 }
 
     // Weather Functions here-------------------
-    // {Location and Search functions will be here}
-
-
-
-
-
     //     // if statement function to see if weatherdescription of weatherdata includes certain keywords: rain or rainy or drizzle, snow, cloudy or fog or mist, sunny or sun, clear/sunny or clear
     // create constant variable that only runs if weatherdata.weatherdescription is not empty or ""
 
@@ -59,51 +54,51 @@ useEffect(() => {
             if (desc.includes("rain") || desc.includes("thunder") || desc.includes("drizzle") || desc.includes("shower")) {
                 // return random image from rain array
                 setweatherData((prev) => ({
-                    ...prev, w_icon: rain[Math.floor(Math.random() * rain.length)].icon,
-                    newImg: rain[Math.floor(Math.random() * rain.length)].src
+                    ...prev, w_icon: rain[random.int(0, rain.length)].icon,
+                    newImg: rain[random.int(0, rain.length)].src
                 }))
             } else if (desc.includes("snow") || desc.includes("blizzard")) {
                 // return random image from snow array
                 setweatherData((prev) => ({
-                    ...prev, w_icon: snow[Math.floor(Math.random() * snow.length)].icon.snowIc,
-                    newImg: snow[Math.floor(Math.random() * snow.length)].src
+                    ...prev, w_icon: snow[random.int(0, snow.length)].icon.snowIc,
+                    newImg: snow[random.int(0, snow.length)].src
                 }))
             }
             else if (desc.includes("sleet") || desc.includes("hail")) {
                 // return random image from sleet array
                 setweatherData((prev) => ({
-                    ...prev, w_icon: snow[Math.floor(Math.random() * snow.length)].icon.sleetIc,
-                    newImg: snow[Math.floor(Math.random() * snow.length)].src
+                    ...prev, w_icon: snow[random.int(0, snow.length)].icon.sleetIc,
+                    newImg: snow[random.int(0, snow.length)].src
                 }))
             }
             else if (desc.includes("cloudy") || desc.includes("overcast")) {
                 // return random image from cloudy array
                 setweatherData((prev) => ({
-                    ...prev, w_icon: cloudy[Math.floor(Math.random() * cloudy.length)].icon.cloudIc,
-                    newImg: cloudy[Math.floor(Math.random() * cloudy.length)].src
+                    ...prev, w_icon: cloudy[random.int(0, cloudy.length)].icon.cloudIc,
+                    newImg: cloudy[random.int(0, cloudy.length)].src
                 }))
             }
             else if (desc.includes("fog") || desc.includes("haze")) {
                 // return random image from cloudy array
                 setweatherData((prev) => ({
-                    ...prev, w_icon: cloudy[Math.floor(Math.random() * cloudy.length)].icon.fogIc,
-                    newImg: cloudy[Math.floor(Math.random() * cloudy.length)].src
+                    ...prev, w_icon: cloudy[random.int(0, cloudy.length)].icon.fogIc,
+                    newImg: cloudy[random.int(0, cloudy.length)].src
                 }))
             }
             else if (desc.includes("mist")) {
                 // return random image from cloudy array
                 setweatherData((prev) => ({
-                    ...prev, w_icon: cloudy[Math.floor(Math.random() * cloudy.length)].icon.mistIc,
-                    newImg: cloudy[Math.floor(Math.random() * cloudy.length)].src
+                    ...prev, w_icon: cloudy[random.int(0, cloudy.length)].icon.mistIc,
+                    newImg: cloudy[random.int(0, cloudy.length)].src
                 }))
             }
             else if (desc.includes("sunny") || desc.includes("sun")) {
                 // return random image from sunny array
-                setweatherData((prev) => ({ ...prev, w_icon: sunny[Math.floor(Math.random() * sunny.length)].icon, newImg: sunny[Math.floor(Math.random() * sunny.length)].src }))
+                setweatherData((prev) => ({ ...prev, w_icon: sunny[random.int(0, sunny.length)].icon, newImg: sunny[random.int(0, sunny.length)].src }))
             }
             else if (desc.includes("clear") || desc.includes("sky")) {
                 // return random image from sunny array
-                setweatherData((prev) => ({ ...prev, w_icon: clear[Math.floor(Math.random() * clear.length)].icon, newImg: clear[Math.floor(Math.random() * clear.length)].src }))
+                setweatherData((prev) => ({ ...prev, w_icon: clear[random.int(0, clear.length)].icon, newImg: clear[random.int(0, clear.length)].src }))
             }
 
             else {
@@ -123,7 +118,7 @@ useEffect(() => {
             <div className="weather-container">
 
                 <div className="weatherhud">
-                    <img src={weatherData.newImg} className="weatherimage" />
+                    <img title="image attributed to Pexels" src={weatherData.newImg} className="weatherimage" />
 
                         <div className="wrap-1">
                             <img src={MapPinIcon} alt="location icon" />

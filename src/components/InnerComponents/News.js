@@ -2,7 +2,8 @@ import { nanoid } from "nanoid";
 import React, { useState, useEffect, useContext } from "react";
 import generateNews from "../HelperFunctions/generateNews";
 import Loader from "../Loader";
-import Dotdotdot from 'react-dotdotdot'
+import Dotdotdot from 'react-dotdotdot';
+import TextTruncate from 'react-text-truncate';
 import { weatherContext } from "../../App";
 function News() {
     const [newsLoading, setNewsLoading] = useState(false);
@@ -21,9 +22,13 @@ function News() {
                         </div>
                         <div className="news-text-content-div">
                             <h3 className="news-title">{item.title}</h3>
-                            <Dotdotdot clamp={1.5}>
-                                <p className="news-description">{item.abstract}</p>
-                            </Dotdotdot>
+                            <TextTruncate
+                            element="p"
+                            containerClassName="news-description"
+                            line={1}
+                            truncateText="…"
+                            text={item.abstract}
+                            />
                             <a href={item.news_url} target="_blank" rel="noreferrer" className="news-link">Read More</a>
                             
                         </div>

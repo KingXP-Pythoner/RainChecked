@@ -13,7 +13,7 @@ html {
 }
 
 body {
-    background: linear-gradient(180deg, #070c18, #13171a);
+    background: linear-gradient(180deg, #050912, #0d1113);
     color: #21f3d4;
 }
 
@@ -247,9 +247,6 @@ nav img:hover {
 
 }
 
-/* img {
-    pointer-events: none;
-} */
 .weatherimage {
     border-radius: 5px;
     box-shadow: 0px 4px 19px 5px rgba(0, 0, 0, 0.25);
@@ -536,7 +533,7 @@ nav img:hover {
 .news-tile:hover {
     filter: brightness(1.06);
     cursor: pointer;
-    border-right: 3px solid #4d927c;
+    border-right: 2px solid #4d927c;
     transition: 0.1s;
     background: linear-gradient(170deg, #050810, #1b2327, #205c50);
 }
@@ -555,7 +552,9 @@ nav img:hover {
 }
 
 .img-mask-div {
-
+    overflow: hidden;
+    min-width: 140px;
+    max-width: 140px;
     height: 100%;
 }
 

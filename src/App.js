@@ -23,30 +23,29 @@ const [weatherData, setweatherData] = useState({city: "", clicked: false, weathe
 
 
  useEffect(() => {
-  // if local storage doesn't have hasownproperty called location, then create one and set it to false
-  if(!localStorage.hasOwnProperty("location")){
-    localStorage.setItem("location", false)
+
+if ('geolocation' in navigator){
+    if(localStorage.hasOwnProperty("location")){
+      setLoading(false)
+      fetchVisitorLocation()
+    }
+    else{
+      localStorage.setItem("location", true)
     localStorage.setItem("theme", "dark")
   }
-  // if local storage has hasownproperty called location and it is set to false, check if user has previously allowed location access
- else{
-  localStorage.setItem("location", true)
   if(localStorage.getItem("theme") === "light"){
     document.body.style.background = "linear-gradient(90deg, #5891a9, #719c9f, #5681a2)"
   }else{
     localStorage.setItem("theme", "dark")
-    document.body.style.background = "linear-gradient(180deg, #070c18, #13171a)"
+    document.body.style.background = "linear-gradient(180deg, #050912, #0d1113)"
   }
- }
-  navigator.permissions.query({name:'geolocation'}).then((result) => {
-    if (result.state === 'granted' && localStorage.getItem("location") === "true") {
-      setLoading(false)
-      fetchVisitorLocation()
-    }     else if(result.state === 'denied'){
-      setPermDenied(true)
     }
-    // Don't do anything if the permission was denied.
-  });
+    
+ else{
+ setPermDenied(true)
+  
+ }
+ 
 }, [])
 
 
@@ -55,7 +54,7 @@ const [weatherData, setweatherData] = useState({city: "", clicked: false, weathe
 
     const getVisitorCoord = async () => {
 
-         if('geolocation' in navigator){
+         
           // if prompt is brought up and user clicks allow, store this action in local storage so that usestate called loading is set to false next time
 
              const latLon = []
@@ -78,11 +77,8 @@ setweatherData((prev)=>({...prev, ...data[1], city: data[0]}))
                  timeout: 5000,
              }
              navigator.geolocation.getCurrentPosition((position)=>onSuccess(position), onError, options)
-            
-         }
-         else{
-             console.log("Geolocation not available")
-         }
+
+      
 
          
          }
@@ -107,11 +103,9 @@ function themeMode(e){
   }
   else if (className === "lm"){
     localStorage.setItem("theme", "dark")
-    document.body.style.background = "linear-gradient(180deg, #070c18, #13171a)"
+    document.body.style.background = "linear-gradient(180deg, #050912, #0d1113)"
   }
 }
-//convert a string to a integer
-
 return (
    <div>
 {  permDenied ? <div style={{width: "100vw", height: "100vh", background: "#141c21e4", padding: "10px"}}>
