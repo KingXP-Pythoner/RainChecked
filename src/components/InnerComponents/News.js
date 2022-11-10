@@ -2,7 +2,6 @@ import { nanoid } from "nanoid";
 import React, { useState, useEffect, useContext } from "react";
 import generateNews from "../HelperFunctions/generateNews";
 import Loader from "../Loader";
-import Dotdotdot from 'react-dotdotdot';
 import TextTruncate from 'react-text-truncate';
 import { weatherContext } from "../../App";
 function News() {
