@@ -1,7 +1,7 @@
 
 const generateNews = async () => {
 try{
-    const url = "/.netlify/functions/fetchNews"
+    const url = "https://raincheck.vercel.app/api/fetchNews"
 const apiData = await fetch(url)
 .then(res => res.json())
 

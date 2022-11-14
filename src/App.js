@@ -75,7 +75,7 @@ setweatherData((prev)=>({...prev, ...data[1], city: data[0]}))
              const options = {
                  enableHighAccuracy: true,
                  maximumAge: 10000,
-                 timeout: 10000,
+                 timeout: 30000,
              }
              navigator.geolocation.getCurrentPosition((position)=>onSuccess(position), onError, options)
 

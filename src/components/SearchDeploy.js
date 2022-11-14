@@ -42,7 +42,7 @@ useEffect(() => {
 
 
 const fetchWeather = async () => {
- try{ const apiRes = await  fetch(`/.netlify/functions/fetchWeather?lat=${selectedCity.lat}&lon=${selectedCity.lng}`).then(res => res.json())
+ try{ const apiRes = await  fetch(`https://raincheck.vercel.app/api/fetchWeather?lat=${selectedCity.lat}&lon=${selectedCity.lng}`).then(res => res.json())
   setapidata(apiRes.data)
 }
 catch(err){
