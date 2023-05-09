@@ -1,23 +1,29 @@
-
 const generateNews = async () => {
-try{
-    const url = "https://raincheck.vercel.app/api/fetchNews"
-const apiData = await fetch(url)
-.then(res => res.json())
+  try {
+    const url =
+      process.env.NODE_ENV === "development"
+        ? "http://localhost:3001"
+        : "https://raincheck.vercel.app";
 
-const filterList = apiData.results.filter((item)=>{return item.section === "world" && item.multimedia !== null})
-       const generalNewsList = filterList.map((item)=>{
+    const apiData = await fetch(url).then((res) => res.json());
 
-              const obj = {title: item.title, abstract: item.abstract, news_url: item.url, news_img: item["multimedia"][2]["url"], caption: item["multimedia"][2]["caption"]}
-              return obj
-         
-    })
+    const filterList = apiData.results.filter((item) => {
+      return item.section === "world" && item.multimedia !== null;
+    });
+    const generalNewsList = filterList.map((item) => {
+      const obj = {
+        title: item.title,
+        abstract: item.abstract,
+        news_url: item.url,
+        news_img: item["multimedia"][2]["url"],
+        caption: item["multimedia"][2]["caption"],
+      };
+      return obj;
+    });
 
-    return generalNewsList
-
-}
-catch(err){
-    console.log("codetoCountry error: ", err)
-}
-}
+    return generalNewsList;
+  } catch (err) {
+    console.log("codetoCountry error: ", err);
+  }
+};
 export default generateNews;
